@@ -1,0 +1,14 @@
+{
+    "clients": [
+        {"client_name":"c1","vendor_id": "v1"},
+        {"client_name":"c2","vendor_id": "v2"},
+        {"client_name":"c3","vendor_id": "v3"}
+    ],
+    "vendors": {
+        "v1":["vendor1", "vendor2", "vendor3"],
+        "v2":["vendor4", "vendor5", "vendor6"],
+        "v3":["vendor7", "vendor8", "vendor9"]
+    }
+        
+  }
+  

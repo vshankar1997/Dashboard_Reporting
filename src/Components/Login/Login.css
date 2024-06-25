@@ -1,0 +1,31 @@
+.pb-3 {
+  padding-bottom: 30px;
+}
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.login-section-left {
+  background: linear-gradient(140deg, #edf8fa, #eef8fa, #eef8f9, #fbfed5);
+  flex-direction: column !important;
+}
+
+.login-section-right {
+  background: radial-gradient(circle at right, #efc5f7 30%, transparent 60%),
+    radial-gradient(circle at bottom left, #f0f593 30%, #d7f0e8 60%),
+    radial-gradient(circle at bottom left, transparent 29%, #d7f0e8 65%);
+  background-blend-mode: normal, normal, normal;
+}
+
+.login-section-right-inner {
+  height: "100%";
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  flex-direction: column;
+  margin-bottom: 20px;
+}

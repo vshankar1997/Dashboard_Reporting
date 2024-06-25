@@ -1,0 +1,520 @@
+:root {
+  --primary-color: #0029ff;
+  --secondary-color: #cadef2;
+  --ternary-color: #f2f9c3;
+  --light-secondary: #e1f4f7;
+  --sec-background: #d3eef2;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0px;
+  padding-left: 38%;
+  margin: 20px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.main-bg {
+  display: flex;
+  background: radial-gradient(
+      circle at top right,
+      #d7f0e8 1%,
+      #f4c6fc 22%,
+      transparent 55%
+    ),
+    radial-gradient(circle at left, #f6fc93 22%, #d7f0e8 50%),
+    radial-gradient(circle at bottom left, transparent 29%, #d7f0e8 65%);
+  background-blend-mode: normal, normal, normal;
+}
+
+.main-bg-single {
+  display: flex;
+  background: radial-gradient(
+      circle at top right,
+      #d7f0e8 1%,
+      #f5a2f5 15%,
+      transparent 70%
+    ),
+    radial-gradient(circle at bottom left, rgb(238, 245, 110) 30%, #d7f0e8 45%),
+    radial-gradient(circle at bottom left, transparent 29%, #d7f0e8 65%);
+
+  background-blend-mode: normal, normal, normal;
+}
+
+.main-bg-linear {
+  background: var(--sec-background);
+  display: flex;
+}
+
+.main-bg-linear .sidebar {
+  background: var(--light-secondary);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 20px 0px 20px;
+}
+.text-center {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Divide content into two parts */
+  align-items: center; /* Vertically center content */
+  padding: 0 20px; /* Add horizontal padding */
+  margin-top: 50px;
+  background: white;
+  color: white;
+  width: 100%;
+  height: 6rem;
+}
+.text-Dashboard{
+  text-align: center;
+  height: '100vh';
+  background-color: '#f0f0f0'; 
+  height: '100%'; padding: '20px';
+  margin-top: 50%;
+  
+  
+   
+}
+
+.text-Sign-In {
+  text-align: right;
+  margin-top: 20px;
+  color: black;
+  height: 2rem;
+}
+
+
+/* .text-center {
+  text-align: left;
+  padding-left: 100px;
+  margin: auto;
+  margin-top: 50px;
+  background: blue;
+  width:100%;
+  height:2rem;
+}
+.text-log{
+  margin-top: 50px;
+  text-align: center;
+  background: plum;
+  height:2rem;
+} */
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.btn-rounded {
+  border-radius: 100px !important;
+}
+
+.w150 {
+  width: 150px;
+}
+
+.learn-more {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.main-logo {
+  cursor: pointer;
+}
+
+.text-blue,
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.mt-3 {
+  margin-top: 30px !important;
+}
+
+.mt-2 {
+  margin-top: 20px !important;
+}
+
+.mt-4 {
+  margin-top: 40px !important;
+}
+
+.mt-1 {
+  margin-top: 10px !important;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+.small {
+  font-size: 70%;
+}
+
+.text-small {
+  font-size: 180%;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.prompt-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.font-14 {
+  font-size: 14px !important;
+}
+
+.font-20 {
+  font-size: 20px !important;
+}
+
+.answer-font p {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-weight: 500 !important;
+  display: inline;
+}
+
+.answer-font-faq p {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.source-prompt p {
+  font-weight: 40 !important;
+  padding-right: 20px;
+}
+
+fieldset.MuiOutlinedInput-notchedOutline {
+  border: 1rem;
+}
+
+.d-none {
+  display: none !important;
+}
+
+#copyableCard {
+  background: #fff;
+}
+
+.large {
+  font-size: 1005%;
+}
+
+.f-500 {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.modal-close {
+  float: right;
+  cursor: pointer;
+}
+
+.pt-0 {
+  padding-top: 10px !important;
+}
+
+.pb-0 {
+  padding-bottom: 0px !important;
+}
+
+.pt-2 {
+  padding-top: 2px !important;
+}
+
+.pb-2 {
+  padding-bottom: 2px !important;
+}
+
+.database-label {
+  background-color: #ffffff80;
+  border-radius: 100px;
+  display: block;
+  padding: 8px;
+  width: 100px;
+  margin: 5px 55px;
+}
+.text-secondary {
+  color: #0029ff99;
+}
+
+.modal-title {
+  border-bottom: 1px solid var(--ternary-color);
+  line-height: 1.5rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  margin: 0px 0px 15px 0px;
+  padding-bottom: 10px;
+}
+
+/* WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #999; /* Set the color of the thumb */
+  border-radius: 6px; /* Set the border radius of the thumb */
+}
+
+::-webkit-scrollbar-track {
+  background: #fff; /* Set the color of the track */
+  border-radius: 6px;
+}
+
+/* Firefox */
+/* Note: Firefox supports scrollbar customization in a different way */
+/* You can use scrollbar-color and scrollbar-width properties */
+
+/* Set the color of the thumb and track */
+/* The first value is the thumb color, and the second value is the track color */
+/* scrollbar-color: #4caf50 #f1f1f1; */
+
+/* Set the width of the scrollbar */
+/* scrollbar-width: thin; thin, auto, or none */
+
+.DropdownMenu{
+  position: fixed;
+  bottom: 0px;
+  padding-left: 38%;
+  margin: 20px
+}
+.select-container {
+  margin-bottom: 20px;
+}
+
+/* Dropdown styles */
+.select {
+  width: 2000px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Button styles */
+.submit-button {
+  margin: 0 10px;
+  margin-top: 20px;
+}
+
+/* Table styles */
+.table-container {
+  margin-top: 580px;
+}
+
+/* Submit button styles */
+.submit-button {
+  margin-top: 2px;
+}
+
+/* Responsive space between elements */
+.space {
+  display: auto;
+  justify-content: space-between;
+}
+
+/* Responsive wrapping for space */
+.space-wrap {
+  flex-wrap: wrap;
+}
+
+/* Centered pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Pagination size changer */
+.pagination-size-changer {
+  margin-left: 20px;
+}
+
+/* Pagination item */
+.pagination-item {
+  margin: 0 5px;
+}
+.table-container {
+  margin-top: 50%;
+  overflow-x: auto; /* Add horizontal scrolling */
+}
+
+/* Table styles */
+.ant-table {
+  width: 100%; /* Ensure table takes full width of container */
+}
+
+/* Adjust column widths as needed */
+.ant-table-thead th:nth-child(1),
+.ant-table-tbody td:nth-child(1) {
+  width: 15%; /* Adjust width of first column (Vendor_name) */
+}
+
+.ant-table-thead th:nth-child(2),
+.ant-table-tbody td:nth-child(2) {
+  width: 15%; /* Adjust width of second column (Table_name) */
+}
+.Username{
+  padding-right: 10px;
+  margin-top: 100px;
+padding-right: 50%;
+}
+.sign-in-button {
+  border-radius: 70px;
+  margin-right: 250px; /* Adjust the margin right as needed */
+  margin-top: 50px;
+  font-size: 50px;
+}
+.sign-out-button {
+  border-radius: 70px;
+  margin-top: 50px;
+}
+.button-container {
+  margin-bottom: 20px; /* Adjust the margin bottom as needed */
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+.clients{
+  space-between: 20px;
+  justify-content: flex-end;
+}
+   
+
+.header {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+
+.content {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.upload-file {
+  display: flex;
+  align-items: center;
+}
+
+.upload-file > * {
+  margin-right: 10px;
+}
+
+.file-name {
+  margin-left: 10px;
+}
+
+.comparison-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comparison-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.comparison-line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.line-number {
+  width: 10%;
+  text-align: center;
+}
+
+.sentence {
+  flex: 45%;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sentence.file-1 {
+  background-color: #f0f0f0;
+}
+
+.sentence.file-2 {
+  background-color: #e0e0e0;
+}
+
+.Modified {
+  background-color: #ffcccb; /* Light red for modified lines */
+}
+
+.Removed {
+  background-color: #ffdab9; /* Light orange for removed lines */
+}
