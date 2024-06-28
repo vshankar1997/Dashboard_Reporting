@@ -244,7 +244,7 @@ const Dashboard = () => {
         <div 
         ref={ htmlContentRef}
         className="here"
-        style={{maxHeight:"400px",overflowX:"auto"}}>
+        style={{maxHeight:"67vh",overflowX:"auto"}}>
         <Table
           columns={columns}
           dataSource={filterData}
@@ -253,7 +253,7 @@ const Dashboard = () => {
             showSizeChanger: true,
             pageSizeOptions: ["2", "5", "10", "25", "50"],
           }}
-          style={{ background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+          style={{ background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)'}}
         />
         </div>
 
