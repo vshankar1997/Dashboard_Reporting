@@ -1,6 +1,6 @@
 
 import React, { useState, useRef,useEffect } from "react";
-import { Table, Button, Dropdown, Space, Layout, Menu, Input } from 'antd';
+import { Table, Button, Dropdown, Space, Layout, Menu, Input, DatePicker } from 'antd';
 import { CopyOutlined, DownloadOutlined } from '@ant-design/icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useMsal } from "@azure/msal-react";
@@ -19,104 +19,22 @@ const Dashboard = () => {
   const [isCopy, ] = useState(false);
   const htmlContentRef = useRef(null);
   const [data, setData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [filterData,setFilterData] = useState();
+
   useEffect(() => {
    
     axios.get('http://127.0.0.1:8000/fetch_data')
         .then(response => {
             setData(response.data);
-            console.log("data------",response.data)
+            setFilterData(response.data)
+            console.log(response.data)
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
         });
 }, []);
-  // const data = [{
-  //   Vendor_name: "Admin",
-  //   Table_name: "ist_cardinal_869_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // },
-  // {
-  //   Vendor_name: "Babelo",
-  //   Table_name: "ist_cardinal_899_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // },
-  // {
-  //   Vendor_name: "Admin",
-  //   Table_name: "ist_cardinal_869_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // },
-  // {
-  //   Vendor_name: "Babelo",
-  //   Table_name: "ist_cardinal_899_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // }, {
-  //   Vendor_name: "Admin",
-  //   Table_name: "ist_cardinal_869_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // },
-  // {
-  //   Vendor_name: "Babelo",
-  //   Table_name: "ist_cardinal_899_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // }, {
-  //   Vendor_name: "Admin",
-  //   Table_name: "ist_cardinal_869_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // },
-  // {
-  //   Vendor_name: "Babelo",
-  //   Table_name: "ist_cardinal_899_raw",
-  //   Hist_tbl_count: 284542,
-  //   latest_records_Count: 5545,
-  //   Total_Count_Source_file: 0,
-  //   Total_Count_Databricks_tbl: 6458964,
-  //   Total_Count_Snowflake_tbl: 88498,
-  //   Matching: "false",
-  //   Processed_date: new Date(),
-  // }
-  // ];
+ 
 
   const handleClientChange = (clientName) => {
     setSelectedClient(clientName);
@@ -200,6 +118,7 @@ const Dashboard = () => {
   {
     title: "Matching",
     dataIndex: "Matching",
+    render: (text, record) => record.Matching ? "True" : "False",
     width: 100,
   },
   {
@@ -210,12 +129,6 @@ const Dashboard = () => {
   },
 ];
 
-
-  const filteredData = data.filter((item) =>
-    Object.keys(item).some((key) =>
-      String(item[key]).toLowerCase().includes(searchText.toLowerCase())
-    )
-  );
 
   const clientMenu = (
     <Menu>
@@ -243,52 +156,7 @@ const Dashboard = () => {
           ))}
     </Menu>
   );
-
-  // const handleCopyClick = () => {
-  //   const range = document.createRange();
-  //   range.selectNode(htmlContentRef.current);
-  //   const selection = window.getSelection();
-  //   selection.removeAllRanges();
-  //   selection.addRange(range);
-  //   try {
-  //     document.execCommand("copy");
-  //     setIsCopy(true);
-  //     window.setTimeout(() => {
-  //       setIsCopy(false);
-  //     }, 2000);
-  //   } catch (error) {
-  //     console.error("Unable to copy to clipboard:", error);
-  //   }
-  //   selection.removeAllRanges();
-  // };
   const handleCopyClick = async () => {
-
-  //   const range = document.createRange();
-  
-  //   // const selection = window.getSelection()
-  //   const selection = window.getSelection(htmlContentRef.current);
-    
-  //   if (htmlContentRef.current) {
-  //     range.selectNode(htmlContentRef.current);
-  
-  //   const selection = window.getSelection()
-  //     selection.removeAllRanges();
-  //     selection.addRange(range);
-      
-  //     try {
-  //       document.execCommand("copy");
-  //       setIsCopy(true);
-  //       window.setTimeout(() => {
-  //         setIsCopy(false);
-  //       }, 2000);
-  //     } catch (error) {
-  //       console.error("Unable to copy to clipboard:", error);
-  //     }
-      
-  //     selection.removeAllRanges();
-  //   } else {
-  //     console.error("HTML content reference is not available");
-  //   }
     const range = document.createRange();
     console.log(htmlContentRef.current)
     range.selectNode(htmlContentRef.current);
@@ -297,10 +165,6 @@ const Dashboard = () => {
     selection.addRange(range);
     try {
       document.execCommand("copy");
-      // setIsCopy(true);
-      // window.setTimeout(() => {
-      //   setIsCopy(false);
-      // }, 2000);
     } catch (error) {
       console.error("Unable to copy to clipboard:", error);
     }
@@ -309,8 +173,8 @@ const Dashboard = () => {
 
   const downloadCSV = () => {
     const csvData = [
-      Object.keys(filteredData[0]).join(','),
-      ...filteredData.map(item => Object.values(item).map(value => `"${value}"`).join(','))
+      Object.keys(filterData[0]).join(','),
+      ...filterData.map(item => Object.values(item).map(value => `"${value}"`).join(','))
     ].join('\n');
   
     const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
@@ -321,18 +185,40 @@ const Dashboard = () => {
     link.click();
     document.body.removeChild(link);
   };
-  
+  const handleDateChange = (date, dateString) =>{
+    setSelectedDate(dateString);
+    filterTableData(dateString);
+  }
+  const filterTableData = (dateString,searchText) => {
+
+    let filtered = data;
+
+    if (dateString) {
+      filtered = filtered.filter(item => {
+        const processedDate = item.Processed_date.split('T')[0];
+        return processedDate === dateString;
+      });
+    }
+    if (searchText) {
+      filtered = filtered.filter(item =>
+        Object.keys(item).some(key =>
+          String(item[key]).toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+    }
+    setFilterData(filtered);
+  };
 
   return (
     <Layout>
       <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#001529', padding: '0 20px' }}>
-        <h1 style={{ color: 'white', margin: 0 }}>Creating Table</h1>
+        <h1 style={{ color: 'white', margin: 0 }}>DashBoard Table</h1>
         <Button type="primary" onClick={handleLogout} style={{ borderRadius: "30px" }}>
           Sign Out
         </Button>
       </Header>
-      <Content style={{ padding: '20px 50px', marginTop: '20px' }}>
-        <Space direction="horizontal" size="middle" style={{ marginBottom: '20px' }}>
+      <Content style={{ padding: '20px 10px', marginTop: '0px' }}>
+        {/* <Space direction="horizontal" size="middle" style={{ marginBottom: '20px' }}>
           <Dropdown overlay={clientMenu} placement="bottomLeft">
             <Button>{selectedClient ? `Selected Client: ${selectedClient}` : "Select Client"}</Button>
           </Dropdown>
@@ -348,30 +234,31 @@ const Dashboard = () => {
           >
             Submit
           </Button>
-        </Space>
-        <Search
+        </Space> */}
+        {/* <Search
           placeholder="Search table..."
           onChange={(e) => setSearchText(e.target.value)}
           style={{ marginBottom: 20, width: 300 }}
-        />
+        /> */}
+        <DatePicker picker="date" style={{ marginBottom: 20}} onChange={handleDateChange}/>
         <div 
         ref={ htmlContentRef}
-        className="here">
+        className="here"
+        style={{maxHeight:"400px",overflowX:"auto"}}>
         <Table
           columns={columns}
-          dataSource={filteredData}
+          dataSource={filterData}
           pagination={{
             position: ["bottomCenter"],
             showSizeChanger: true,
             pageSizeOptions: ["2", "5", "10", "25", "50"],
           }}
-          scroll={{ x: 1300 }}
           style={{ background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
         />
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <CopyToClipboard text={JSON.stringify(filteredData, null, 2)}>
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <CopyToClipboard text={JSON.stringify(filterData, null, 2)}>
             <Button type="primary" icon={<CopyOutlined />} onClick={handleCopyClick}>
               {isCopy ? "Copied!" : "Copy Table Data"}
             </Button>
@@ -379,7 +266,7 @@ const Dashboard = () => {
           <Button
             type="primary"
             icon={<DownloadOutlined />}
-            onClick={() => downloadCSV(JSON.stringify(filteredData, null, 2), 'table_data.json')}
+            onClick={() => downloadCSV(JSON.stringify(filterData, null, 2), 'table_data.json')}
             style={{ marginLeft: '10px' }}
           >
             Download Table Data
