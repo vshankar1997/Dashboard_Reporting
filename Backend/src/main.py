@@ -96,29 +96,74 @@ HOSTNAME = 'adb-5196752782233882.2.azuredatabricks.net'
 HTTP_PATH = 'sql/protocolv1/o/5196752782233882/0830-124307-gldiy7zr'
 PERSONAL_ACCESS_TOKEN = 'dapi43939d908bc861d240d7d38ee7f944c1-3'
 
+# @app.get("/fetch_data")
+# async def fetch_data():    
+#        with sql.connect(server_hostname=HOSTNAME,
+#                  http_path=HTTP_PATH,
+#                  access_token=PERSONAL_ACCESS_TOKEN) as connection:
+                
+#             with connection.cursor() as cursor: 
+#                 cursor.execute("SELECT * FROM db_cardinal_raw.cardinal_run_report LIMIT 10")        
+#                 result = cursor.fetchall()
+#                 # print(f"Fetched {len(result)} rows")
+#                 formatted_data = []
+#                 for row in result:                    
+#                     formatted_row = {
+#                         "Vendor_name": row[0],
+#                         "Table_name": row[1],
+#                         "Hist_tbl_count": row[2],
+#                         "latest_records_Count": row[3],
+#                         "Total_Count_Source_file": row[4],
+#                         "Total_Count_Databricks_tbl": row[5],
+#                         "Total_Count_Snowflake_tbl": row[6],
+#                         "Matching": row[7],
+#                         "Processed_date": row[8].isoformat()  
+#                     }
+                        
+#                     formatted_data.append(formatted_row)
+#                 history_query ="""DESCRIBE history db_cardinal_raw.cardinal_run_report"""
+#                 cursor.execute(history_query)
+#                 history_results = cursor.fetchall()
+#                 description_data = []
+#                 for row in history_results:
+#                     description_row = {
+#                         "Version": row[0]
+#                     }
+#                     description_data.append(description_row)
+#                 print(description_data)
+
+#             return formatted_data          
+
 @app.get("/fetch_data")
 async def fetch_data():    
-       with sql.connect(server_hostname=HOSTNAME,
-                 http_path=HTTP_PATH,
-                 access_token=PERSONAL_ACCESS_TOKEN) as connection:
+    historical_data = []
+    with sql.connect(server_hostname=HOSTNAME,
+                     http_path=HTTP_PATH,
+                     access_token=PERSONAL_ACCESS_TOKEN) as connection:
+        with connection.cursor() as cursor: 
+            history_query = "DESCRIBE history db_cardinal_raw.cardinal_run_report"
+            cursor.execute(history_query)
+            history_results = cursor.fetchall()
+            
+            for row in history_results:
+                version = row[0] 
+                historical_query = f"SELECT * FROM db_cardinal_raw.cardinal_run_report VERSION AS OF {version}"
+                cursor.execute(historical_query)
+                historical_result = cursor.fetchall()
                 
-            with connection.cursor() as cursor: 
-                cursor.execute("SELECT * FROM db_cardinal_raw.cardinal_run_report LIMIT 10")        
-                result = cursor.fetchall()
-                # print(f"Fetched {len(result)} rows")
-                formatted_data = []
-                for row in result:                    
-                    formatted_row = {
-                        "Vendor_name": row[0],
-                        "Table_name": row[1],
-                        "Hist_tbl_count": row[2],
-                        "latest_records_Count": row[3],
-                        "Total_Count_Source_file": row[4],
-                        "Total_Count_Databricks_tbl": row[5],
-                        "Total_Count_Snowflake_tbl": row[6],
-                        "Matching": row[7],
-                        "Processed_date": row[8].isoformat()  
+                for result_row in historical_result:
+                    historical_row = {
+                        "Version": version,
+                        "Vendor_name": result_row[0],
+                        "Table_name": result_row[1],
+                        "Hist_tbl_count": result_row[2],
+                        "latest_records_Count": result_row[3],
+                        "Total_Count_Source_file": result_row[4],
+                        "Total_Count_Databricks_tbl": result_row[5],
+                        "Total_Count_Snowflake_tbl": result_row[6],
+                        "Matching": result_row[7],
+                        "Processed_date": result_row[8].isoformat() if result_row[8] else None
                     }
-                        
-                    formatted_data.append(formatted_row)
-            return formatted_data          
+                    historical_data.append(historical_row)
+    
+    return historical_data      
